@@ -32,11 +32,34 @@ const closeLightbox = () => {
     document.body.style.overflow = ''; 
 };
 
-// Sadece arkadaki boşluğa tıklayınca kapat
 overlay?.addEventListener('click', (e) => {
     if (e.target === overlay) closeLightbox();
 });
 
 window.addEventListener('keydown', (e) => {
     if (e.key === "Escape") closeLightbox();
+});
+
+// 3. Hamburger Menü Kontrolü (Yeni Eklendi)
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const navMenu = document.getElementById('nav-menu');
+
+hamburgerBtn?.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    
+    // İkonu değiştir (Hamburger -> Kapat)
+    const icon = hamburgerBtn.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+});
+
+// Menü linklerine tıklandığında menüyü kapat
+const navLinks = document.querySelectorAll('nav ul li a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        const icon = hamburgerBtn.querySelector('i');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+    });
 });
