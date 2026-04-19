@@ -1,0 +1,153 @@
+/* resume.css */
+
+/* Sayfa Genel Konteynırı */
+.resume-wrapper {
+    padding: 80px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+    font-weight: 800;
+}
+
+/* Izgara Yapısı (Eğitim ve Deneyim Yan Yana) */
+.resume-grid {
+    display: grid;
+    /* minmax(320px) yaparak dar ekranlarda daha erken alt alta geçmesini sağladım */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 60px;
+}
+
+.section-subtitle {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-subtitle i {
+    font-size: 1.5rem;
+}
+
+/* Zaman Çizelgesi (Timeline) Çizgisi */
+.resume-item {
+    position: relative;
+    padding-left: 35px;
+    border-left: 2px solid var(--accent-color);
+    margin-bottom: 45px;
+    transition: 0.3s ease;
+}
+
+.resume-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Timeline Noktaları */
+.resume-item::before {
+    content: '';
+    position: absolute;
+    left: -11px; /* Çizgiyle tam hizalanması için */
+    top: 0;
+    width: 20px;
+    height: 20px;
+    /* Arka plan rengini ana CSS'teki değişkenden alır */
+    background: var(--bg-color, #0a192f); 
+    border: 3px solid var(--accent-color);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.resume-item:hover {
+    transform: translateX(8px);
+}
+
+/* Tarih Rozeti */
+.date {
+    display: inline-block;
+    font-size: 0.8rem;
+    background: var(--led-color);
+    color: var(--accent-color);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.resume-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.resume-item p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.resume-item .description {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* Alt Kısımdaki Buton Alanı */
+.resume-footer {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.resume-footer .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 12px 30px;
+}
+
+/* --- MOBİL UYUMLULUK (MEDIA QUERY) --- */
+@media (max-width: 900px) {
+    .resume-wrapper {
+        padding: 40px 5%;
+    }
+    
+    .resume-grid {
+        grid-template-columns: 1fr; /* Mobilde mutlaka tek sütun */
+        gap: 40px;
+    }
+    
+    .page-title {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+
+    .resume-item {
+        padding-left: 25px;
+    }
+
+    .resume-item::before {
+        left: -11px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .section-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+}
